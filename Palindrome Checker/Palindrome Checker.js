@@ -1,23 +1,18 @@
+//Function that splits the array in two, skipping the middle character in case of an odd length.
 function splitArr(arr) {
-  var beginning;
-  var end;
+  var numOfElements = Math.trunc(arr.length / 2);
+  var beginningArr = arr.slice(0, numOfElements);
+  var endArr = arr.slice(arr.length - numOfElements, arr.length);
 
-  if ( arr.length % 2 == 0 ) {
-    beginning = arr.slice(0, arr.length / 2 );
-    end = arr.slice((arr.length / 2), arr.length);
-  } else {
-    beginning = arr.slice(0, Math.trunc(arr.length / 2) );
-    end = arr.slice(Math.trunc((arr.length / 2) + 1), arr.length);
-  }
-
-  return [beginning, end];
+  return [beginningArr, endArr];
 }
 
 function palindrome(str) {
-  var alphanumericStr = str.toLowerCase().match(/[a-z0-9]/g);
-  var [ beginning, end ] = splitArr(alphanumericStr);
+  var alphanumericArr = str.toLowerCase().match(/[a-z0-9]/g);
+  var [ beginning, end ] = splitArr(alphanumericArr);
 
   end.reverse();
+  
   if ( beginning.every((element, index) => element === end[index]) ) {
     return true;
   } else {
